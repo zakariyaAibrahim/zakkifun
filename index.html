@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>En veldig viktig invitasjon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf8f0;
+      --cream-dark: #f5ece0;
+      --brown-dark: #2c1810;
+      --brown-mid: #8b6347;
+      --brown-light: #d4b896;
+      --red-dark: #8b3a3a;
+      --red-deep: #6e2e2e;
+      --green-dark: #2c5f2e;
+      --gold: #c9a84c;
+    }
+
+    body {
+      background: #1a1008;
+      background-image:
+        radial-gradient(ellipse at 20% 20%, #2a1a0e 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, #1a1008 0%, transparent 60%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      font-family: 'Lato', sans-serif;
+    }
+
+    /* Candlelight flicker animation */
+    @keyframes flicker {
+      0%, 100% { opacity: 1; text-shadow: 0 0 8px #f5c518, 0 0 20px #f5c518, 0 0 40px #e8a200; }
+      25% { opacity: 0.92; text-shadow: 0 0 6px #f5c518, 0 0 14px #f5c518; }
+      50% { opacity: 0.98; text-shadow: 0 0 10px #f5c518, 0 0 24px #f5c518, 0 0 48px #e8a200; }
+      75% { opacity: 0.9; text-shadow: 0 0 5px #f5c518, 0 0 12px #f5c518; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px) rotate(-2deg); }
+      40% { transform: translateX(8px) rotate(2deg); }
+      60% { transform: translateX(-5px) rotate(-1deg); }
+      80% { transform: translateX(5px) rotate(1deg); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.1); }
+      56% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ---- Card ---- */
+    .card {
+      background: var(--cream);
+      border: 2px solid var(--brown-light);
+      border-radius: 4px;
+      max-width: 580px;
+      width: 100%;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: visible;
+      animation: fadeInUp 0.8s ease both;
+      box-shadow:
+        0 0 0 6px #1a1008,
+        0 0 0 8px var(--brown-mid),
+        0 30px 80px rgba(0,0,0,0.7);
+    }
+
+    /* Corner ornaments */
+    .corner {
+      position: absolute;
+      font-size: 24px;
+      color: var(--brown-light);
+      line-height: 1;
+      animation: float 3s ease-in-out infinite;
+    }
+    .corner.tl { top: 12px; left: 14px; animation-delay: 0s; }
+    .corner.tr { top: 12px; right: 14px; transform: scaleX(-1); animation-delay: 0.5s; }
+    .corner.bl { bottom: 12px; left: 14px; transform: scaleY(-1); animation-delay: 1s; }
+    .corner.br { bottom: 12px; right: 14px; transform: scale(-1,-1); animation-delay: 1.5s; }
+
+    /* Candle emoji at top */
+    .candle-top {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 0.5rem;
+      animation: flicker 2.5s ease-in-out infinite;
+      display: block;
+    }
+
+    /* Badge */
+    .badge {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .badge span {
+      display: inline-block;
+      background: var(--red-dark);
+      color: var(--cream);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: 2px;
+      font-weight: 400;
+    }
+
+    /* Headings */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 38px);
+      font-weight: 400;
+      color: var(--brown-dark);
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--brown-mid);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 1.2rem 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: var(--brown-light); }
+    .divider-icon { font-size: 12px; color: var(--brown-mid); }
+
+    /* Letter text */
+    .letter {
+      font-size: 15px;
+      color: var(--brown-dark);
+      line-height: 1.9;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .letter strong { color: var(--red-dark); }
+
+    /* Details row */
+    .details-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.2rem 0;
+      flex-wrap: wrap;
+    }
+    .detail-item { text-align: center; }
+    .detail-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      display: block;
+      margin-bottom: 3px;
+    }
+    .detail-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--brown-dark);
+    }
+
+    /* --- Countdown --- */
+    .countdown-section {
+      text-align: center;
+      margin: 1.2rem 0;
+    }
+    .countdown-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .countdown-display {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+    .cd-unit {
+      text-align: center;
+      background: var(--cream-dark);
+      border: 1px solid var(--brown-light);
+      border-radius: 4px;
+      padding: 8px 14px;
+      min-width: 56px;
+    }
+    .cd-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--red-dark);
+      display: block;
+      line-height: 1;
+    }
+    .cd-lbl {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* --- Menu reveal --- */
+    .reveal-section { text-align: center; margin: 1.2rem 0; }
+
+    .mystery-btn {
+      background: var(--red-dark);
+      color: var(--cream);
+      border: none;
+      padding: 12px 28px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .mystery-btn:hover:not(:disabled) { background: var(--red-deep); transform: scale(1.02); }
+    .mystery-btn:active:not(:disabled) { transform: scale(0.98); }
+    .mystery-btn:disabled { background: var(--brown-mid); cursor: default; }
+
+    .menu-reveal {
+      display: none;
+      margin-top: 1.2rem;
+      animation: fadeIn 0.6s ease;
+    }
+    .menu-reveal.visible { display: block; }
+
+    .course-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+    }
+    .course-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--brown-dark);
+      margin: 3px 0 2px;
+    }
+    .course-desc {
+      font-size: 12px;
+      color: #7a6050;
+      font-style: italic;
+    }
+    .menu-section { text-align: center; margin: 0.7rem 0; }
+
+    /* ---- RSVP section ---- */
+    .rsvp-section { text-align: center; margin-top: 1.5rem; }
+    .rsvp-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .rsvp-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+      min-height: 50px;
+    }
+
+    .btn-yes {
+      padding: 12px 28px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      border: 1.5px solid var(--green-dark);
+      background: transparent;
+      color: var(--green-dark);
+      transition: all 0.2s;
+    }
+    .btn-yes:hover { background: var(--green-dark); color: var(--cream); }
+    .btn-yes:active { transform: scale(0.98); }
+    .btn-yes.clicked {
+      background: var(--green-dark);
+      color: var(--cream);
+      animation: heartbeat 1s ease;
+    }
+
+    /* The impossible NO button */
+    .btn-no {
+      padding: 12px 28px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      border: 1.5px solid var(--red-dark);
+      background: transparent;
+      color: var(--red-dark);
+      transition: background 0.15s, color 0.15s;
+      position: absolute; /* will be repositioned by JS */
+      white-space: nowrap;
+      user-select: none;
+    }
+    /* when it's been dodged many times it gets more dramatic */
+    .btn-no.scared {
+      font-size: 9px;
+      padding: 8px 16px;
+      opacity: 0.7;
+    }
+    .btn-no.terrified {
+      font-size: 8px;
+      padding: 6px 10px;
+      opacity: 0.4;
+    }
+
+    .response-msg {
+      display: none;
+      margin-top: 1rem;
+      padding: 14px 20px;
+      border-radius: 3px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      animation: fadeIn 0.4s ease;
+      line-height: 1.5;
+    }
+    .response-msg.show { display: block; }
+    .response-yes { background: #e8f2e8; color: #1a3d1b; border: 1px solid #a8c9a8; }
+    .response-no { background: #fce8e8; color: #5c1a1a; border: 1px solid #d9a0a0; }
+
+    /* Signature */
+    .signature {
+      text-align: center;
+      margin-top: 1.8rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--brown-mid);
+      font-size: 14px;
+    }
+    .sig-name {
+      font-size: 26px;
+      color: var(--brown-dark);
+      font-style: italic;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .footnote {
+      text-align: center;
+      font-size: 10px;
+      color: #b09070;
+      margin-top: 1.2rem;
+      font-style: italic;
+    }
+
+    /* Confetti */
+    .confetti-piece {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      animation: confettiFall linear forwards;
+      border-radius: 2px;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <span class="corner tl">✦</span>
+  <span class="corner tr">✦</span>
+  <span class="corner bl">✦</span>
+  <span class="corner br">✦</span>
+
+  <span class="candle-top">🕯️</span>
+
+  <div class="badge"><span>En eksklusiv invitasjon</span></div>
+
+  <h1>Du er herved<br>formelt invitert</h1>
+  <div class="subtitle">til et middagsarrangement du aldri vil glemme*</div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon">✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <p class="letter">
+    Kjære elskede,<br><br>
+    Det er med stor glede og litt overdrevet selvtillit at jeg herved
+    inviterer deg til årets mest eksklusive middagsarrangement —
+    nemlig <strong>middag hjemme, laget av meg</strong>.<br><br>
+    Kjøkkenet vil lukte godt (eller interessant), bordet vil se
+    fint ut, og jeg lover å bare sjekke telefonen <em>tre ganger</em>.
+  </p>
+
+  <div class="details-row">
+    <div class="detail-item">
+      <span class="detail-label">Sted</span>
+      <span class="detail-val">Hjemme hos oss</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Tid</span>
+      <span class="detail-val">I kveld, 19:00</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Dresscode</span>
+      <span class="detail-val">Pysjamas godtas</span>
+    </div>
+  </div>
+
+  <!-- Countdown timer -->
+  <div class="countdown-section">
+    <span class="countdown-label">Tid til middagen</span>
+    <div class="countdown-display">
+      <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">timer</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">min</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">sek</span></div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon">✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Menu reveal -->
+  <div class="reveal-section">
+    <p style="font-size:13px; color:#7a6050; margin-bottom:0.8rem; font-style:italic;">
+      Hva vil bli servert? Klikk for å avsløre kveldens meny...
+    </p>
+    <button class="mystery-btn" id="menu-btn" onclick="revealMenu()">
+      Avslør hemmelig meny
+    </button>
+
+    <div class="menu-reveal" id="menu">
+      <div class="divider" style="margin: 1rem 0 0.8rem;">
+        <div class="divider-line"></div>
+        <div class="divider-icon">✦</div>
+        <div class="divider-line"></div>
+      </div>
+      <div class="badge" style="margin-bottom:1rem;"><span>Kveldens meny</span></div>
+
+      <div class="menu-section">
+        <div class="course-label">Forrett</div>
+        <div class="course-name">Brød &amp; stearinlys</div>
+        <div class="course-desc">Fra butikken, men varmt av oss</div>
+      </div>
+      <div class="divider" style="margin:0.6rem 0;">
+        <div class="divider-line"></div>
+        <div class="divider-icon" style="font-size:10px;">❧</div>
+        <div class="divider-line"></div>
+      </div>
+      <div class="menu-section">
+        <div class="course-label">Hovedrett</div>
+        <div class="course-name">Kjærlighet på pinne</div>
+        <div class="course-desc">Det retten egentlig heter er hemmelig</div>
+      </div>
+      <div class="divider" style="margin:0.6rem 0;">
+        <div class="divider-line"></div>
+        <div class="divider-icon" style="font-size:10px;">❧</div>
+        <div class="divider-line"></div>
+      </div>
+      <div class="menu-section">
+        <div class="course-label">Dessert</div>
+        <div class="course-name">Sjokola deg til himmel</div>
+        <div class="course-desc">Eller noe søtt fra skapet, avhengig av energi</div>
+      </div>
+      <div class="divider" style="margin:0.6rem 0;">
+        <div class="divider-line"></div>
+        <div class="divider-icon" style="font-size:10px;">❧</div>
+        <div class="divider-line"></div>
+      </div>
+      <div class="menu-section">
+        <div class="course-label">Drikke</div>
+        <div class="course-name">Champagne (eller vann)</div>
+        <div class="course-desc">Avhenger av om vi finner champagnen</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon">✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- RSVP -->
+  <div class="rsvp-section">
+    <span class="rsvp-label">Vennligst svar</span>
+    <div class="rsvp-row" id="rsvp-row">
+      <button class="btn-yes" id="btn-yes" onclick="sayYes()">✓ Jeg kommer!</button>
+      <button class="btn-no" id="btn-no">✕ Nei takk</button>
+    </div>
+    <div class="response-msg response-yes" id="resp-yes">
+      Strålende! 🥂 Kokken er allerede i gang. Vi sees i kveld, mitt hjerte.
+    </div>
+    <div class="response-msg response-no" id="resp-no"></div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon">✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="signature">
+    Med kjærlighet og litt smør på hendene,
+    <span class="sig-name">Din kjæreste</span>
+  </div>
+
+  <p class="footnote">* «Aldri vil glemme» garanteres ikke juridisk, men hjertet mener det.</p>
+</div>
+
+<script>
+  /* ========================================
+     CUSTOMISATION — endre her!
+     ======================================== */
+  const DINNER_HOUR = 19;    // 19:00
+  const DINNER_MIN  = 0;
+
+  /* ========================================
+     Countdown to dinner
+     ======================================== */
+  function updateCountdown() {
+    const now = new Date();
+    const target = new Date();
+    target.setHours(DINNER_HOUR, DINNER_MIN, 0, 0);
+    if (target <= now) target.setDate(target.getDate() + 1);
+
+    let diff = Math.max(0, Math.floor((target - now) / 1000));
+    const h = Math.floor(diff / 3600);
+    diff -= h * 3600;
+    const m = Math.floor(diff / 60);
+    const s = diff % 60;
+
+    document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ========================================
+     Menu reveal
+     ======================================== */
+  function revealMenu() {
+    document.getElementById('menu').classList.add('visible');
+    const btn = document.getElementById('menu-btn');
+    btn.textContent = '— Bon appétit —';
+    btn.disabled = true;
+  }
+
+  /* ========================================
+     Impossible NO button
+     ======================================== */
+  const noBtn   = document.getElementById('btn-no');
+  const rsvpRow = document.getElementById('rsvp-row');
+  let dodgeCount = 0;
+
+  const taunts = [
+    'Psst... her borte!',
+    'Kom igjen, prøv!',
+    'For treg! 😄',
+    'Nesten!',
+    'Hahahaha 😂',
+    'Gi opp da!',
+    'Nei er ikke et alternativ',
+    'Vil du ha hjelp?',
+    '...virkelig?',
+    'OK dette er pinlig nå',
+  ];
+
+  // Position button absolutely within rsvp-row
+  function initNoBtn() {
+    rsvpRow.style.position = 'relative';
+    rsvpRow.style.minHeight = '60px';
+
+    // Place no-btn to the right of yes-btn
+    const yesBtn = document.getElementById('btn-yes');
+    const rowRect = rsvpRow.getBoundingClientRect();
+    const yesRect = yesBtn.getBoundingClientRect();
+
+    noBtn.style.position = 'absolute';
+    noBtn.style.top  = '50%';
+    noBtn.style.transform = 'translateY(-50%)';
+    noBtn.style.left = (yesRect.right - rowRect.left + 16) + 'px';
+  }
+
+  noBtn.addEventListener('mouseenter', dodge);
+  noBtn.addEventListener('touchstart', dodge, { passive: true });
+  noBtn.addEventListener('focus', dodge);
+
+  function dodge(e) {
+    e.preventDefault && e.preventDefault();
+    dodgeCount++;
+
+    const row = rsvpRow.getBoundingClientRect();
+    const btn = noBtn.getBoundingClientRect();
+    const card = document.querySelector('.card').getBoundingClientRect();
+
+    // Available area relative to rsvpRow — keep within card
+    const maxX = card.width - btn.width - 20;
+    const maxY = card.height - btn.height - 20;
+
+    // Random position within card, offset to rsvpRow's origin
+    const rowTop  = rsvpRow.getBoundingClientRect().top - card.top;
+    const rowLeft = rsvpRow.getBoundingClientRect().left - card.left;
+
+    const newLeft = Math.random() * maxX - rowLeft;
+    const newTop  = Math.random() * maxY - rowTop;
+
+    noBtn.style.left      = Math.max(10, newLeft) + 'px';
+    noBtn.style.top       = Math.max(10, newTop) + 'px';
+    noBtn.style.transform = 'none';
+
+    // Update taunt text
+    const tauntIdx = Math.min(dodgeCount - 1, taunts.length - 1);
+    noBtn.textContent = taunts[tauntIdx];
+
+    // Make it shrink and fade after many dodges
+    if (dodgeCount >= 6) noBtn.classList.add('scared');
+    if (dodgeCount >= 12) noBtn.classList.add('terrified');
+  }
+
+  window.addEventListener('load', initNoBtn);
+  window.addEventListener('resize', initNoBtn);
+
+  /* ========================================
+     YES response + confetti
+     ======================================== */
+  function sayYes() {
+    const yesBtn = document.getElementById('btn-yes');
+    yesBtn.classList.add('clicked');
+    yesBtn.textContent = '❤️ Ja, selvsagt!';
+    yesBtn.disabled = true;
+
+    // Hide no-button
+    noBtn.style.display = 'none';
+
+    document.getElementById('resp-yes').classList.add('show');
+    launchConfetti();
+  }
+
+  const confettiColors = ['#8b3a3a','#c9a84c','#2c5f2e','#d4b896','#8b6347','#fdf8f0'];
+
+  function launchConfetti() {
+    for (let i = 0; i < 80; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.top  = '-20px';
+        el.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        el.style.width  = (Math.random() * 8 + 6) + 'px';
+        el.style.height = (Math.random() * 8 + 6) + 'px';
+        el.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+        el.style.animationDelay   = Math.random() * 0.5 + 's';
+        el.style.borderRadius     = Math.random() > 0.5 ? '50%' : '2px';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 4000);
+      }, i * 20);
+    }
+  }
+</script>
+</body>
+</html>
